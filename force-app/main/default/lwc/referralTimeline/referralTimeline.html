@@ -1,0 +1,21 @@
+﻿<template>
+    <template if:true={hasItems}>
+        <h3 class="slds-text-heading_small slds-m-top_medium">Timeline</h3>
+        <ul class="slds-timeline slds-m-top_small">
+            <template for:each={items} for:item="item">
+                <li key={item.id} class="slds-timeline__item">
+                    <div class="slds-media">
+                        <div class="slds-media__body">
+                            <p><strong>{item.label}</strong>
+                                <template if:true={item.isRecent}>
+                                    <lightning-badge label="Recent" class="slds-m-left_x-small"></lightning-badge>
+                                </template>
+                            </p>
+                            <p class="slds-text-body_small">{item.detail}</p>
+                        </div>
+                    </div>
+                </li>
+            </template>
+        </ul>
+    </template>
+</template>

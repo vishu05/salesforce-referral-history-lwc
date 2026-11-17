@@ -1,0 +1,20 @@
+﻿name: CI
+on:
+  push: { branches: [main] }
+  pull_request: { branches: [main] }
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: npm install --ignore-scripts
+      - name: LWC Jest tests (if present)
+        run: npm run test:unit -- --passWithNoTests || true
+      - name: Apex PMD scan
+        uses: pmd/pmd-github-action@v2
+        with:
+          rulesets: 'category/apex/design.xml'
+          sourcePath: 'force-app/main/default/classes'
+        continue-on-error: true

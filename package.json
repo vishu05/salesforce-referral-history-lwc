@@ -1,0 +1,7 @@
+{
+  "name": "salesforce-referral-history-lwc",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": { "test:unit": "sfdx-lwc-jest" },
+  "devDependencies": { "@salesforce/sfdx-lwc-jest": "^7.0.0" }
+}

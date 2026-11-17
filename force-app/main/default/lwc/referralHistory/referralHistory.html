@@ -1,0 +1,22 @@
+﻿<template>
+    <lightning-card title="Referral History" icon-name="standard:record_lookup">
+        <div class="slds-p-horizontal_medium slds-p-bottom_medium">
+            <p class="slds-text-body_small slds-m-bottom_small">{summary}</p>
+            <lightning-combobox label="Status filter" value={statusFilter}
+                options={statusOptions} onchange={handleStatusChange}>
+            </lightning-combobox>
+            <template if:true={error}>
+                <p class="slds-text-color_error slds-m-top_small">Unable to load referral history.</p>
+            </template>
+            <template if:true={isEmpty}>
+                <p class="slds-m-top_small">No referrals found for this person.</p>
+            </template>
+            <template if:false={isEmpty}>
+                <lightning-datatable key-field="referralId" data={rows}
+                    columns={columns} hide-checkbox-column>
+                </lightning-datatable>
+            </template>
+            <c-referral-timeline rows={rows}></c-referral-timeline>
+        </div>
+    </lightning-card>
+</template>
